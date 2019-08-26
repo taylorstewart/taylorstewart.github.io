@@ -1,0 +1,99 @@
+---
+title: "land cover data"
+author: "Andrew Nguyen"
+date: "2016-February-19"
+output: html_document
+---
+#Script to grab land use data    
+https://pakillo.github.io/R-GIS-tutorial/#vector
+
+#load libraries
+*tidyr and magrittr mess up extract function
+```{r libraries}
+library(foreign)
+#library(dplyr)
+#library(magrittr)
+#library(tidyr)
+library(gridExtra)
+library(ggplot2)
+#spatial
+library(raster)
+library(rasterVis)
+library(rgdal)
+library(dismo)
+```
+#Test case for 1 species
+```{r test case for T nid}
+#load image of land use into R
+x<-raster("GLOBCOVER_L4_200901_200912_V2.3.tif")
+
+#plot it to see if we did it right
+plot(x,axes=T,xlim=c(-150,-30),ylim=c(-50,50))
+
+##reading in Triatoma nitida
+#Tnit<-read.csv("Globcover2009_V2.3_Global_/Triatoma_nitida.csv",header=TRUE)
+#points(Tnit$Lon,Tnit$Lat,cex=1,pch=16,col="red") run this code with previous line to put points onto the map
+
+#no clue waht this does, but following the code
+#coordinates(Tnit)<-Tnit[,c("Lon","Lat")]
+#it looks like it converted lon lat into spaace
+#plot(Tnit)
+
+#important code: projecting points from lat lon into space
+crs.go<-CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")
+#proj4string(Tnit)<-crs.go
+#summary(Tnit)
+
+#extract values of lat lon from the raster file
+#Tnit$worked<-extract(x,cbind(Tnit$Lon,Tnit$Lat))
+#Tnit$worked
+```
+
+#For whole dataset presence
+```{r}
+whole<-read.csv("20160328_species_distribution.csv",skip=0)#"metadata on first 2 lines"
+coordinates(whole)<-whole[,c("Lon","Lat")]
+plot(whole)
+
+proj4string(whole)<-crs.go
+summary(whole)
+
+
+#plotting out points
+plot(x,axes=T,main="Species distributions",xlim=c(-130,-30),ylim=c(-60,60))
+points(whole$Lon,whole$Lat,cex=.5,pch=16,col="red")
+
+#grabbing land use
+whole$land.use<-extract(x,cbind(whole$Lon,whole$Lat))
+whole$land.use
+
+#write.csv(whole,"20160328_species_distribution_with_LANDUSE.csv")
+```
+#For absence
+```{r eval=FALSE}
+none<-read.csv("20160328_species_distribution.csv")
+str(none)
+none<-na.omit(none);dim(none)
+coordinates(none)<-none[,c("Lon","Lat")]
+plot(none)
+
+proj4string(none)<-crs.go
+summary(none)
+
+
+#plotting out points
+plot(x,axes=T,main="Species distributions")
+points(none$Lon,none$Lat,cex=.5,pch=16,col="red")
+
+#grabbing land use
+none$land.use<-extract(x,cbind(none$Lon,none$Lat))
+none$land.use
+write.csv(none,"20160227_absence_species_with_land_use.csv")
+```
+
+
+#Session info
+```{r}
+sessionInfo()
+```
+

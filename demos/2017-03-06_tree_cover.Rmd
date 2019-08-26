@@ -1,0 +1,64 @@
+---
+title: "Grabbing Tree Cover data"
+author: "Antdrew D. Nguyen"
+  
+prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+    toc: yes
+    toc_depth: 2
+---
+
+Load libraries and grab tree cover data: https://catalog.data.gov/dataset/nlcd-2011-percent-tree-canopy-cartographic
+
+Tree canopy cover ranges from 0-100%. 
+
+```{r}
+library(rgdal)
+library(raster)
+
+x<-raster("nlcd_2011_USFS_tree_canopy_2011_edition_2014_03_31/cartographic_product/nlcd2011_usfs_treecanopy_cartographic_3-31-2014.img")
+plot(x)
+```   
+
+Ok, now load in dataset. You just need a dataset with lat, lon.    
+
+```{r}
+library(data.table)
+b<-fread("https://raw.githubusercontent.com/adnguyen/adnguyen.github.io/master/demos/20160517_ANBE_ant_sampling.csv",skip=6) #grab data from online
+#b<-read.csv("20160517_ANBE_ant_sampling.csv",skip=6) # if data is local, you can use this
+b<-b[-87,] # getting rid of row that does not have lat lon
+
+coords <- b[, c("lon", "lat")] # grabbing just the coordinates
+
+names(coords) <- c("x", "y")
+coordinates(coords) <- ~x + y
+proj4string(coords) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")
+crs_args <- x@crs@projargs
+sites_transformed <- spTransform(coords, CRS(crs_args))
+
+  #extract land cover data for each point, given buffer size
+#Landcover <- extract(x, sites_transformed, buffer=30)
+Landcover <- extract(x, sites_transformed, buffer=20)
+
+Landcover[1:10] # you get a list
+b$tree_canopy_20<-unlist(lapply(Landcover, `[[`, 1))
+
+
+### just grabbing a smaller buffer radius
+Landcover2 <- extract(x, sites_transformed, buffer=.25)
+Landcover2[1:10]
+length(unlist(Landcover2)) # make sure this number is the same length as your data frame
+b$tree_canopy<-unlist(Landcover2) # link up tree cover to original data
+#names(b)
+#b
+#write.csv(b,"test.csv") # write out dataset
+
+
+```
+
+Depending on buffer radius, you'll get a few values per site. So I just took the first value.   
+
+```{r}
+sessionInfo()
+```
