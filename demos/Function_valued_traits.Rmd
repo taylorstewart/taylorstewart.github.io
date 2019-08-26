@@ -1,0 +1,109 @@
+---
+title: "Function-valued traits"
+author: "Antdrew D. Nguyen"
+date: "2016-12-12"
+output:
+   prettydoc::html_pretty:
+    theme: leonids
+    toc: yes
+    toc_depth: 2
+---
+
+#libraries
+```{r}
+library(ggplot2)
+library(nls2)
+#plotting
+library(plyr)
+library(tidyr)
+library(minpack.lm)
+```
+
+# Creating a curve following parameters    
+
+## Boltzmann function    
+```{r}
+
+#fitting data with boltzmann function
+Boltz<-function(data=x){
+  B<-nls(gxp ~ (1+(max-1)/(1+exp((Tm-T)/a))),data=data, start=list(max=80,Tm=35,a=1.05), trace=TRUE,control=nls.control(warnOnly = TRUE, tol = 1e-05, maxiter=1000))
+#summary(B)
+  return(summary(B)$parameters)
+}
+
+
+
+```
+
+## implementing boltzmann function
+```{r}
+T<-c(25,28,30,31.5,33,35,36.5,40,41)
+length(T)
+gxp<-c(1.139380725,
+1.495138067,
+1.31816746,
+2.39787468,
+3.341707929,
+6.387151393,
+6.266289656,
+8.939597512,
+11.99697887)
+dat<-as.data.frame(cbind(T,gxp));dat
+Boltz(dat)
+```
+
+#plotting
+
+```{r}
+###creates data based off of the parameters of a function
+fud<-function(T=seq(25,70,.1),Tm=40,slope=1.8,max=50){
+  y<-1+ (max-1)/(1+exp(((Tm-T)/slope)))
+  return(y)
+  }
+
+#plot
+par(mar=c(5,5,5,5))
+plot(seq(0,70,.1),fud(T=seq(0,70,.1)),col="blue",type="n",ylim=c(0,80),las=1,xlab="",ylab="",xlim=c(25,50))
+mtext("Fold Induction", side=2, line=2.5, cex=2)
+mtext("Temperature", side=1, line=2.7, cex=2)
+lines(seq(25,70,.1),fud(Tm=37.4,slope=1.76,max=76),lwd=6)
+lines(c(37.4,37.4),c(-10,39),lwd=5,lty="dotdash",col="purple")
+abline(h=73,lty="dotdash",col="red",lwd=5)
+arrows(33,-3,45,113,code=2,lwd=5,lty="dotdash",col="gold4")
+#points(FB1$T,FB1$gxp,pch=19,col="blue",cex=3)
+#text(c(39,30,36),c(20,76,50),c("Tm","Max","Slope"),font=2,cex=2)
+text(c(36),c(50),c("Slope"),font=2,cex=2)
+mtext(side=1,at=37.5,text="Tm",font=2,cex=2,line=.75)
+mtext(side=2,at=73,text="Max",font=2,cex=2,line=.75,las=1)
+```
+
+
+# Plotting 2 samples with differences in parameters
+```{r}
+#hsp70
+T<-seq(25,43,.1)
+
+#closed
+cu<-fud(T=T,Tm=37,slope=0.33,max=27.3)
+cl<-fud(T=T,Tm=35.26,slope=1.28,max=49.5)
+#open
+u<-fud(T=T,Tm=37.08,slope=1.81,max=77.5)#upper open
+l<-fud(T=T,Tm=38.17,slope=0.94,max=47.3)#lower open
+
+plot(T,fud(T=T,Tm=36.16,slope=0.84,max=38.9),las=1,ylab="Fold Induction",xlab="Temperature",type='n',ylim=c(0,80),xlim=c(30,43),cex.lab=2)
+
+polygon(c(T,rev(T)),c(cl,rev(cu)),col=rgb(0,0,0.5,.5),border=FALSE)
+
+
+#lines(T,fud(T=T,Tm=35.26,slope=1.28,max=49.5),lwd=5,col="blue",lty="dotdash")# lower
+#lines(T,fud(T=T,Tm=37,slope=0.33,max=27.3),lwd=5,col="blue",lty="dotdash")#upper
+polygon(c(T,rev(T)),c(l,rev(u)),col=rgb(.5,0,0,.5),border=FALSE)
+lines(T,fud(T=T,Tm=37.63,slope=1.38,max=62.74),lwd=5,col="red")
+lines(T,fud(T=T,Tm=36.16,slope=0.84,max=38.9),lwd=5,col="blue")
+```
+
+
+```{r}
+sessionInfo()
+```
+

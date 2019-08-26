@@ -1,0 +1,65 @@
+---
+title: "Data Related and Demos"
+author: "Antdrew D. Nguyen, Evolutionary Physiologist"
+date: "Last updated: 2018-01-10"
+output:
+  prettydoc::html_pretty:
+    theme: hpstr
+    toc: yes
+---
+
+[Back to main page](https://adnguyen.github.io/)
+
+### Data management practices:      
+
+* Strategies for <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">organizing directories and files</a> 
+	* [Setting a DIO](https://guides.github.com/activities/citable-code/) for a github repo with layout from above             
+	
+* Cool paper with <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">data management guidelines</a>      
+	* <a href="https://adnguyen.github.io/assets/Metadata_example.csv">Metadata example</a>: descriptions are in the header of the actual dataset          
+	* Organize data into <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data"> wide or long format</a>     
+		
+### Data visualization and statistics in R:     
+
+* All things <a href="https://github.com/adnguyen/atd"> data club</a>      
+    * My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
+
+* Demos for maps:      
+    * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
+    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.  
+    * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
+    * Make interactive maps with [leaflet](Leaflet_code.html)
+
+* Cool project where we asked whether ants were stressed under experimental [warming](20170508_stressed_ants_report_forSHC_NJG.html)  
+    * Script starts from calculating log2 fold change in gene expression to statistical models to predicting stress back out into nature.   
+
+* [Vignette](2018-01-16_dataplay_katie_miller.html) on plotting multiple paneled figures, quick and dirty and fitting a linear model to different subsets of the data    
+
+* Rcookbook demos:    
+
+    * Converting data between <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">wide and long data formats</a>      
+
+    * Summarizing [data](http://www.cookbook-r.com/Manipulating_data/Summarizing_data/) to get means, standard deviations    
+
+
+
+### Function-valued traits  
+
+* Diapause exit as a function valued trait: [Plotting parameters of diapause termination](2018-01-10_phases_of_diapause_exit.html)
+* Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
+* Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)    
+* Evaluating evolutionary responses to selection of performance curves, the Kingsolver way. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
+
+---------
+
+
+### Building a webpage with Jekyll and Github pages      
+* <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">How to</a> build a webpage       
+
+* <a href="http://jekyllthemes.org/">Jekyll themes</a>  
+
+### Things for me to learn
+* <a href="http://shiny.rstudio.com/tutorial/lesson7/">Sharing your science through shiny apps</a>
+
+* <a href="https://github.com/ujjwalkarn/DataSciencePython">Stats in Python :-)!</a>
+

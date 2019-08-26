@@ -1,0 +1,387 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Select Report Output Sections</title>
+
+    <link href="/Content/images/favicon.ico" rel="shortcut icon" />
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+    <!--[if lt IE 8]> 
+        <link href="/Content/ie_7_and_below.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+            <script src="//assets.adobedtm.com/926659a1689cc9fca96760b67cca714ae48f0584/satelliteLib-a9d46808a35b7b8034adfab1d8207407222304d5.js"></script>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-35274597-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+
+</head>
+<body>
+
+
+    <script type="text/javascript">
+    <!--
+    (function ($) {
+        // Shell for your plugin code
+
+        // add 
+        $.fn.tabmenu = function (selectedTabId) {
+            // Plugin code
+            return this.each(function () {
+
+                if (selectedTabId)
+                    $(selectedTabId, $(this)).addClass("ui-tabs-selected ui-state-active");
+
+                // continue with styling
+                $(this).addClass("ui-tabs ui-widget ui-widget-content ui-corner-all");
+                // all tab menus are in the tabsmenu id
+                $(this).find("#tabsmenu").addClass("ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all");
+                // cannot use direct child selectors in IE7
+                $(this).find("#tabsmenu li")
+                    .addClass("ui-state-default ui-corner-top")
+                    .one('mouseenter', function () { $(this).addClass("ui-state-hover"); }, 'fast')
+                    .one('mouseexit',  function () { $(this).removeClass("ui-state-hover"); }, 'fast');
+            });
+        }
+    })(jQuery);
+    -->
+    </script>
+
+
+
+        <div class="page">  
+            <header>
+                    
+                <div id="CareerPlanHeader">
+    <div class="CareerPlanHeaderItem">
+        <div id="logoimage">                    
+            <a class="imagelink" href="/"><img alt="My IDP Logo" src="/Content/images/myIDP-log.png" /></a>
+        </div>
+    </div>
+    <div id="logindisplay">
+        
+<a href="/Account/LogOff">LOG OFF</a>    <span class="LoginSeparator">|</span>
+    <a href="mailto:myidp@sciencecareers.org">CONTACT US</a>
+    <span class="LoginSeparator">|</span>
+<a href="/UserInfo/EmailPreferences">MY ACCOUNT</a>    <span class="LoginSeparator">|</span>
+<a href="/Home/About">ABOUT myIDP</a>    <span class="LoginSeparator">|</span>
+    <a href="http://sciencecareers.sciencemag.org/about">ABOUT <em>Science</em> Careers</a>
+                  
+    </div>
+    <div >                    
+        <a href="http://www.aaas.org"><img class="HeaderAAASLogo" width="91" height="25" src="/Content/images/AAAS-logo.png" alt="AAAS Logo" /></a>
+    </div>
+</div>
+            </header>
+
+            <div id="container">
+                <div id="tabBarAndContents">
+                    <h2>Individual Development Plan Summary</h2>
+
+                    <div id="Wizard">
+
+<form action="/Plan/PreviousStep" method="link"><input type="submit" value="Previous Step" /></form><form action="/Plan/NextStep" method="link"><input type="submit" value="Next Step" /></form>                                                                </div>
+
+                    <div id="tabs">
+
+                        <ul id="tabsmenu">
+                            <li id="QuickTipsTab"><a href="/Plan/QuickTips">Quick Tips</a></li>
+                            <li id="SummaryTab"><a href="/Plan/Summary">Print myIDP</a></li>
+                        </ul>
+
+                        <script type="text/javascript">
+                                $("#tabs").tabmenu("#SummaryTab");
+                        </script>
+                                                <div id="content">
+                            
+
+
+<script language="javascript" type="text/javascript">
+<!--
+
+// update the children of this checkbox to match checkbox state
+// note that the hierarchy is mostly conceptual (checkbox doesn't have children itself, other html elements form the hierarchy)
+// this functiona assumes that child checkboxes have the an attribute called 'parent' that contains the name of the 'parent node'
+function updateCheckboxChildren(checkbox) {
+
+    // get all <input> elements 
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        var node = inputs[i];
+
+        // only look at checkbox input types
+        var type = node.getAttribute("type");
+        if (type == "checkbox") {
+
+            // if the child's parent attribute is same as our name, then act on it
+            var parentName = node.getAttribute("parent");
+            if (parentName == checkbox.name) {
+                node.checked = checkbox.checked;
+                node.disabled = !checkbox.checked;
+            }
+        }
+    }    
+}
+
+-->
+</script>
+
+
+<div id="UnitTabCanvas">
+
+    <div id="UnitTabCanvasSingleColumn">
+
+    <p>
+        It may be useful to share parts of your IDP with others, or to keep a copy for yourself.
+    </p>
+
+<form action="/Plan/Summary" method="post" name="OutputOptions">        <fieldset>
+            <legend>Select Plan Sections to Include in Report</legend>
+
+            <p>
+            By default, all sections of your IDP will be shown in this summary report. If you prefer to hide one or more sections, then please click on the box below to de-select that section.
+            </p>
+
+            <div>                    <div class="PrintSectionRowOdd">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="personalinfo" name="personalinfo" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="personalinfo" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Personal Information: Position start and end dates, Institution, Research Project</div>
+
+                    </div>
+                    <div class="PrintSectionRowEven">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="mentoring" name="mentoring" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="mentoring" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Mentoring Team</div>
+
+                    </div>
+                    <div class="PrintSectionRowOdd">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="selfassessment" name="selfassessment" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="selfassessment" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Self-Assessments</div>
+
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="topvalues" name="topvalues" parent="selfassessment" type="checkbox" value="true" /><input name="topvalues" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Top values (score = 5)</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="topinterests" name="topinterests" parent="selfassessment" type="checkbox" value="true" /><input name="topinterests" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Top Interests (score = 5)</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="strongskills" name="strongskills" parent="selfassessment" type="checkbox" value="true" /><input name="strongskills" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Strong skills areas (score = 5)</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="weakskills" name="weakskills" parent="selfassessment" type="checkbox" value="true" /><input name="weakskills" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Weak skills areas (score = 1)</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="avoid" name="avoid" parent="selfassessment" type="checkbox" value="true" /><input name="avoid" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Activities to avoid (score = 1)</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="skillstable" name="skillstable" parent="selfassessment" type="checkbox" value="true" /><input name="skillstable" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Skills assessment summary table</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="intereststable" name="intereststable" parent="selfassessment" type="checkbox" value="true" /><input name="intereststable" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Interests assessment summary table</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="valuestable" name="valuestable" parent="selfassessment" type="checkbox" value="true" /><input name="valuestable" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Values assessment summary table</div>
+                            </div>
+                    </div>
+                    <div class="PrintSectionRowEven">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="progress" name="progress" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="progress" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Career Exploration Progress</div>
+
+                    </div>
+                    <div class="PrintSectionRowOdd">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="careergoals" name="careergoals" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="careergoals" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Career Goals</div>
+
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="plana" name="plana" parent="careergoals" type="checkbox" value="true" /><input name="plana" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Plan A</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" id="planb" name="planb" parent="careergoals" type="checkbox" value="true" /><input name="planb" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">Plan B</div>
+                            </div>
+                    </div>
+                    <div class="PrintSectionRowEven">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="skillsgoals" name="skillsgoals" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="skillsgoals" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Skills Development Goals</div>
+
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" name="219579" parent="skillsgoals" type="checkbox" value="true" /><input name="219579" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">SMART Goals for: Broad based knowledge of science</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" name="219580" parent="skillsgoals" type="checkbox" value="true" /><input name="219580" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">SMART Goals for: Critical evaluation of scientific literature</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" name="219581" parent="skillsgoals" type="checkbox" value="true" /><input name="219581" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">SMART Goals for: Writing grant proposals</div>
+                            </div>
+                            <div class="PrintSectionRow" >
+                                <div class="PrintSectionRowCheckBox" style="padding-left: 2em">
+                                    <input checked="checked" name="219582" parent="skillsgoals" type="checkbox" value="true" /><input name="219582" type="hidden" value="false" />
+                                </div>
+                                <div class="PrintSectionRowSection">SMART Goals for: Deep knowledge of my specific research area</div>
+                            </div>
+                    </div>
+                    <div class="PrintSectionRowOdd">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="careeradvancementgoals" name="careeradvancementgoals" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="careeradvancementgoals" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Career Advancement Goals</div>
+
+                    </div>
+                    <div class="PrintSectionRowEven">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="projectgoals" name="projectgoals" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="projectgoals" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Project Completion Goals</div>
+
+                    </div>
+                    <div class="PrintSectionRowOdd">
+                        <div class="PrintSectionRowCheckBox" style="padding-left: 1em">
+                            <input checked="checked" id="goalssummary" name="goalssummary" onclick="updateCheckboxChildren(this)" type="checkbox" value="true" /><input name="goalssummary" type="hidden" value="false" />
+                        </div>
+                        <div class="PrintSectionRowSection">Goals Summary</div>
+
+                    </div>
+            </div>
+            <input type="submit" name="submitButton" value="Show Report" onclick="skipDirtyCheck()" />               
+        </fieldset>
+</form>    </div>
+</div>
+
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+            <div id="navBarLeft">               
+                
+    <ul id="column_navigator" class="navMenu">
+
+        <li>
+            <a class="expanded">Overview</a>
+            <ul>
+                        <li><a href="/Overview/Summary">Overview Summary</a></li>
+                        <li><a href="/UserInfo/Edit">Personal Information</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="expanded">Assessment</a>
+            <ul>
+                        <li><a href="/Skills/QuickTips">Skills Assessment</a></li>
+                        <li><a href="/Interests/QuickTips">Interests Assessment</a></li>
+                        <li><a href="/Values/QuickTips">Values Assessment</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="expanded">Career Exploration</a>
+            <ul>
+                        <li><a href="/CareerFit/QuickTips">Consider Career Fit</a></li>
+                        <li><a href="/ReadAboutCareers/QuickTips">Read About Careers</a></li>
+                        <li><a href="/AttendEvents/QuickTips">Attend Events</a></li>
+                        <li><a href="/TalkToPeople/QuickTips">Talk to People</a></li>
+                        <li><a href="/CareerChoice/QuickTips">Choose a Career Path</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="expanded">Set Goals</a>
+            <ul>
+                        <li><a href="/CareerAdvancementGoals/QuickTips">Career Advancement Goals</a></li>
+                        <li><a href="/SkillGoals/QuickTips">Skill Goals</a></li>
+                        <li><a href="/ProjectGoals/QuickTips">Project Goals</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="expanded">Implement Plan</a>
+            <ul>
+                        <li><a href="/Mentors/QuickTips">Mentoring Team</a></li>
+                        <li class="selected">
+                            <a href="/Plan/QuickTips">myIDP Summary</a>
+                        </li>
+                        <li><a href="/Certificate/QuickTips">Completion Certificate</a></li>
+            </ul>
+        </li>
+    </ul>
+
+            </div> <!-- navBarLeft -->
+
+            <div id="footer">
+                <p>...</p>
+                <p>
+                    Site authored by C.N. Fuhrmann, J.A. Hobin, B. Lindstaedt, P.S. Clifford.  All Rights Reserved.
+                </p>
+                Copyright &copy; 2011,2015 American Association for the Advancement of Science. All Rights Reserved. Read our <a href="http://www.sciencemag.org/site/about/privacy.xhtml">privacy policy/legal terms</a>.
+            </div>
+        </div> <!-- page -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="//ajax.microsoft.com/ajax/jQuery.Validate/1.6/jQuery.Validate.min.js" type="text/javascript"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/modernizr/modernizr-1.7-development-only.js" type="text/javascript"></script>
+
+        <script src="/Content/scripts/MyJavaScript.js" type="text/javascript"></script>
+
+                <script type="text/javascript">_satellite.pageBottom();</script>
+
+    </body>
+</html>

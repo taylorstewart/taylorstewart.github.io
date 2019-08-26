@@ -1,0 +1,116 @@
+---
+title: "PCA of rasters"
+author: "Antdrew D. Nguyen"
+date: "2016-12-07"
+output: 
+  
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: yes
+    toc_depth: 2
+---
+<style type="text/css">
+
+body{ /* Normal  */
+   font-size: 24px;
+}
+
+code.r{ /* Code block */
+  font-size: 18px;
+}
+pre { /* Code block */
+  font-size: 18px
+}
+</style>
+
+This is a data demo for performing a PCA on multiple climate raster layers with [*rasterPCA()* function](http://bleutner.github.io/RStoolbox/rstbx-docu/rasterPCA.html).
+
+
+# Load libraries and grabbing dataset
+```{r load libraries}
+#libraries related to maps
+library(sp)
+library(raster)
+library(maps)
+library(mapdata)
+library(RStoolbox)# rasterPCA function
+
+#packages for reading in data
+library(data.table)
+
+
+#reading in dataset
+dat<-fread("https://raw.githubusercontent.com/adnguyen/HelmsCahan_CBP-partA_2016/master/Script_Analyses/Sampling_sites_table.csv")
+
+```
+
+## looking at the data
+```{r}
+dat<-data.frame(dat)
+str(dat)
+```
+
+## grab bioclim climate variables and add to dataset
+```{r grab bioclim var and dataset}
+w <- getData('worldclim', var='bio', res=2.5) # downloading data
+plot(w,1) # plot of mean annual temperature
+
+#dbio1 <- extract(w, dat[,c("Longitude","Latitude")]) # by column
+dbio1 <- extract(w, dat[,5:6]) #grabbing bioclim variables based on coordinates
+full.dat <- data.frame(cbind(dat, dbio1[,1:19])) # combining orginal data set with bioclim variables
+
+```
+
+# Plot eastern US unmanipulated climate data
+```{r}
+
+plot(w, 1, xlim=c(-130, -65), ylim=c(25,50), axes=F, legend=F, col=colorRampPalette(c("lightblue","orange"))(255),main="",box=FALSE)
+map("worldHires",c("USA","Canada"),add=TRUE)
+map("state", c('florida', 'south carolina', 'north carolina', 'georgia', 'virginia', 'west virginia', 'maryland', 'delaware', 'new jersey', 'rhode island', 'new york', 'connecticut', 'massachusetts', 'pennyslvania', 'vermont', 'new hampshire', 'maine', 'alabama', 'tennessee', 'kentucky', 'ohio','iowa','illinois','arkansas','missouri','minnesota','wisconsin','michigan','louisiana','mississippi',"texas","arizona","illinois","california","oregon","utah","washington","kansas","new mexico","montana","idaho","wyoming","north dakota","south dakota","nebraska","oklahoma"), add = TRUE)
+```
+
+# Using rasterPCA function   
+Climate is usually correlated and there are a lot of them. One way to reduce the complexity is to perform a PCA on those variables (19 of them). Also, PCA'ing the whole word will take a long time, so crop the desired region first. 
+```{r rasterPCA}
+#look at range of lat and lon
+range(full.dat[,5]) #lon range
+range(full.dat[,6]) # lat range
+#designating limits
+lims<-c(-85,-65,30,50)
+
+submap<-crop(w,lims)
+plot(submap,1)#plot MAT
+map("worldHires",c("USA","Canada"),add=TRUE)
+map("state", c('florida', 'south carolina', 'north carolina', 'georgia', 'virginia', 'west virginia', 'maryland', 'delaware', 'new jersey', 'rhode island', 'new york', 'connecticut', 'massachusetts', 'pennyslvania', 'vermont', 'new hampshire', 'maine', 'alabama', 'tennessee', 'kentucky', 'ohio','iowa','illinois','arkansas','missouri','minnesota','wisconsin','michigan','louisiana','mississippi',"texas","arizona","illinois","california","oregon","utah","washington","kansas","new mexico","montana","idaho","wyoming","north dakota","south dakota","nebraska","oklahoma"), add = TRUE)
+
+
+#now we can do pca
+pcamap<-rasterPCA(submap,spca=TRUE)
+#check loadings and eigenvalues
+knitr::kable(round(pcamap$model$loadings[,1:3],3)) # top 3 loadings
+#eigenvalues
+summary(pcamap$model)
+
+#plot first pca1
+plot(pcamap$map,1) #plot the first pca!
+map("worldHires",c("USA","Canada"),add=TRUE)
+map("state", c('florida', 'south carolina', 'north carolina', 'georgia', 'virginia', 'west virginia', 'maryland', 'delaware', 'new jersey', 'rhode island', 'new york', 'connecticut', 'massachusetts', 'pennyslvania', 'vermont', 'new hampshire', 'maine', 'alabama', 'tennessee', 'kentucky', 'ohio','iowa','illinois','arkansas','missouri','minnesota','wisconsin','michigan','louisiana','mississippi',"texas","arizona","illinois","california","oregon","utah","washington","kansas","new mexico","montana","idaho","wyoming","north dakota","south dakota","nebraska","oklahoma"), add = TRUE)
+
+
+```
+
+## compare pca of climate of sites vs raster layer
+```{r compar pcas}
+datpca<-princomp(scale(full.dat[,8:26]))
+knitr::kable(round(datpca$loadings[,1:3],3))# pca of sites
+
+#looks similar
+```
+
+
+
+# Session Information
+```{r session information}
+sessionInfo()
+```
+

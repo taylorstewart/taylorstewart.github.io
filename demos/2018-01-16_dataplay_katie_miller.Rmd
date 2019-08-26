@@ -1,0 +1,72 @@
+---
+title: "data play with katie miller"
+output: html_document
+---
+
+# libraries
+
+```{r}
+library(ggplot2)
+library(tidyr)
+library(plyr)
+```
+
+
+# load in data set convert data from wide to long format  
+
+
+```{r}
+x<-read.csv("20180103_HF_W_subset2.csv") # load in data
+x<-x[,-26] #getting rid of Colonies_with_sexuals 
+str(x)
+
+
+x.long<-gather(x,colony_level_measurements,measurement,Queen:Rel_Biomass_HFworkers)
+str(x.long)
+head(x.long)
+```
+
+# operate! take mean of each chamber for every colony_level_measurements
+
+```{r}
+x.sum<-ddply(x.long,.(Chamber,Target.Delta,colony_level_measurements),summarize,measurement=mean(measurement))
+head(x.sum)
+```
+
+# Lets plot!
+
+```{r}
+ggplot(x.sum,aes(y=measurement,x=Target.Delta,colour=colony_level_measurements))+geom_point(size=3)+stat_smooth(method="lm")+facet_grid(.~colony_level_measurements)
+
+
+ggplot(x.sum,aes(y=measurement,x=Target.Delta,colour=colony_level_measurements))+geom_point(size=3)+stat_smooth(method="lm")+facet_wrap(~colony_level_measurements,ncol=3,scales="free")
+```
+
+# Statistics  
+
+```{r}
+lmmods<-dlply(x.sum,.(colony_level_measurements),lm,formula=measurement~Target.Delta)
+
+
+
+coefs<-ldply(lmmods,coef)
+coefs
+
+ldply(lmmods,anova)
+
+
+#glmmods<-summary(dlply(x.sum,.(colony_level_measurements),glm,formula=measurement~Target.Delta, family=poisson()))
+#gcoefs<-ldply(glmmods,coef)
+#gcoefs
+
+#ldply(glmmods,summary)
+
+#glmmods
+```
+
+# sesioninfo()
+
+```{r}
+sessionInfo()
+```
+
