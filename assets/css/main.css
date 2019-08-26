@@ -1235,17 +1235,6 @@ input, select, textarea {
 
 		}
 
-/* Aside */
-
-  #aside {
-		cursor: default;
-		display: inline-block;
-		position: relative;
-		text-align: center;
-		top: -1em;
-		vertical-align: middle;
-  }
-
 /* Header */
 
 	#header {
