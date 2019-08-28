@@ -390,16 +390,54 @@
 								<h2 class="major">Photos</h2>
 								
 									<div class="row">
-										<div class="column" width="30%">
-							    			<img src="images/gallery/2012-lake-superior-beaver.jpg" title="Lake Superior Beaver" class="img-thumbnail" width="200" height="200" border="5">
+										<div class="column">
+							    			<img src="images/gallery/2012-lake-superior-beaver.jpg" onclick="openModal();currentSlide(1)" class="hover-shadow">
 										</div>
-							  			<div class="column" width="30%">
-											<img src="images/gallery/2012-lake-superior-caribou.jpg" title="Lake Superior Caribou" class="img-thumbnail" width="200" height="200" border="5">
+							  			<div class="column">
+											<img src="images/gallery/2012-lake-superior-caribou.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
 										</div>
-										<div class="column" width="30%">
-											<img src="images/gallery/2012-lake-superior-catch.jpg" title="Mountains" class="img-thumbnail" width="200" height="200" border="5">
+										<div class="column">
+											<img src="images/gallery/2012-lake-superior-catch.jpg" onclick="openModal();currentSlide(3)" class="hover-shadow">
+										</div>
+										<div class="column">
+											<img src="images/gallery/2012-lake-superior-ctd.jpg" onclick="openModal();currentSlide(4)" class="hover-shadow">
 										</div>
 									</div>
+									
+									<!-- The Modal/Lightbox -->
+									<div id="myModal" class="modal">
+										<span class="close cursor" onclick="closeModal()">&times;</span>
+											<div class="modal-content">
+
+												<div class="mySlides">
+													<div class="numbertext">1 / 4</div>
+													<img src="images/gallery/2012-lake-superior-beaver.jpg" style="width:100%">
+												</div>
+
+												<div class="mySlides">
+													<div class="numbertext">2 / 4</div>
+													<img src="images/gallery/2012-lake-superior-caribou.jpg" style="width:100%">
+												</div>
+
+												<div class="mySlides">
+													<div class="numbertext">3 / 4</div>
+									      		  	<img src="images/gallery/2012-lake-superior-catch.jpg" style="width:100%">
+									  			</div>
+
+												<div class="mySlides">
+													<div class="numbertext">4 / 4</div>
+													<img src="images/gallery/2012-lake-superior-ctd.jpg" style="width:100%">
+												</div>
+
+									    <!-- Next/previous controls -->
+										<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+										<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+									    <!-- Caption text -->
+										<div class="caption-container">
+											<p id="caption"></p>
+										</div>
+										
 							</article>
 					
 					
