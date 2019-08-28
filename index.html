@@ -384,8 +384,33 @@
 								</div>
 							</article>
 
-							<!-- Photos -->
+						
+						<!-- Photos -->
+							<div class="row">
+								<div class="column">
+							    	<img src="gallery/2012-lake-superior-beaver.jpg" alt="Lake Superior Beaver" onclick="myFunction(this);">
+								</div>
+							  	<div class="column">
+									<img src="gallery/2012-lake-superior-caribou.jpg" alt="Lake Superior Caribou" onclick="myFunction(this);">
+								</div>
+								<div class="column">
+									<img src="gallery/2012-lake-superior-catch.jpg" alt="Mountains" onclick="myFunction(this);">
+								</div>
+							</div>
 							
+							<!-- The expanding image container -->
+							<div class="container">
+								<!-- Close the image -->
+								<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+								<!-- Expanded image -->
+								<img id="expandedImg" style="width:100%">
+
+								<!-- Image text -->
+								<div id="imgtext"></div>
+							</div>
+					
+					<!-- End Main -->
 					</div>
 
 
