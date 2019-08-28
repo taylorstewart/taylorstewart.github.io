@@ -486,15 +486,14 @@
 								/* The Modal (background) */
 								.modal {
 								  display: none; /* Hidden by default */
-								  position: -webkit-sticky; /* Safari */
-								  position: sticky; /* Stay in place */
+								  position: absolute; /* Stay in place */
 								  z-index: 1; /* Sit on top */
 								  padding-top: 100px; /* Location of the box */
 								  left: 0;
 								  top: 0;
 								  width: 100%; /* Full width */
 								  height: auto; /* Full height */
-								  max-width: 100%;
+								  max-height: 100%;
 								  overflow: auto; /* Enable scroll if needed */
 								  background-color: rgb(0,0,0); /* Fallback color */
 								  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
@@ -541,8 +540,7 @@
 
 								/* The Close Button */
 								.close {
-  								  position: -webkit-sticky; /* Safari */
-  								  position: sticky;
+								  position: absolute;
 								  top: 15px;
 								  right: 35px;
 								  color: #f1f1f1;
